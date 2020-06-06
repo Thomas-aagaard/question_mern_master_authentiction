@@ -4,19 +4,7 @@ module.exports = questions => {
     let express = require('express');
     let router = express.Router();
 
-    /**** Routes ****/
-    router.get('/', async (req, res) => {
-        const ques = await questionDB.getData();
-        await res.json(ques);
-        console.log(ques);  /// Tried to see if I could find why I dont get the data
-    });
 
-    router.get('/:id', async (req, res) => {
-        let id = req.params.id;
-        const ques = await questionDB.getQuestion(id);
-        await res.json(ques);
-        console.log(ques);
-    });
 
     router.post('/', async (req, res) => {
         let question = {
@@ -29,7 +17,7 @@ module.exports = questions => {
 
 
 
-    router.post('/api/questions/:id/answers', async (req, res) => {
+    router.post('/:id/answers', async (req, res) => {
         const id = req.params.id;
         const answers = {text:req.body.answers, votes:0};
 

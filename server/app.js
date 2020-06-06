@@ -37,6 +37,14 @@ app.use((err, req, res, next) => {
         next(); // If no errors, forward request to next middleware or route
     }
 });
+/**** Routes ****/
+
+app.get('/:id', async (req, res) => {
+    let id = req.params.id;
+    const ques = await questionDB.getQuestion(id);
+    await res.json(ques);
+    console.log(ques);
+});
 
 
 
